@@ -1,0 +1,37 @@
+﻿<!DOCTYPE html>
+<!--这个界面的目的是让其他视图套用这个模板，代码重用，减少代码量-->
+<!--在模板里引用wwwroot里的样式，即下方的link。这种方法不好的地方在于团队开发引用太多link导致版不兼容-->
+<!--因此，我们换种方法，点击项目，右键，添加，客户端库，搜索框里输入需要搜索的东西，twitter-bootstrap。-->
+<!--点击安装需要的文件，然后选择位置，记得，所有的前端文件都放在wwwroot里，这样才会被引用，目的是大家统一link版本-->
+<!--然后在body里修改需要的样式-->
+<!--进对应的视图修改需要的样式-->
+<!--在startup文件里修改上传wwwroot文件需要的依赖-->
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>使用模板 @ViewBag.Title</title>
+    <link href="~/wwwroot/lib/bootstrap/css/bootstrap.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/wwwroot/content/site.css" />
+</head>
+<body>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li><a asp-controller="Home" asp-action="Index" class="navbar-brand">正宗兰州拉面</a></li>
+                    <li><a asp-controller="Feedback" asp-action="Index">意见反馈</a></li>
+                    <partial name="_loginPartial">
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container body-content">
+        <div class="row">
+            @RenderBody()
+        </div>
+    </div>
+    @RenderSection("Scripts", required: false);
+
+</body>
+</html>

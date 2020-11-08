@@ -1,0 +1,49 @@
+﻿@*model IEnumerable<lanzhoubeefNoodefs.Models.Noodle>*@
+@model lanzhoubeefNoodefs.ViewModels.HomeViewModel
+@*{
+        Layout = "_layout";//这个代码的目的是说明这个页面引用了Shared文件夹下名为_layout的视图界面作为模板，但是如果一个个界面写的话太麻烦
+                           //选择Views文件夹，右键，添加Razor 视图开始 这个文件，然后转到这个文件_ViewStart
+    }*@
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+<h1>产品列表</h1>
+<!--5.4 使用仓库展示数据-->
+<!--首先在顶部引入声明，把第一步的类引入进来-->
+<!--创建一个循环，读取数据，注意，循环是大写的Model-->
+<!--4.5 借用5.4的代码展示数据-->
+@foreach (var noodle in Model.Noodles)
+{
+    <div class="col-sm-4 col-lg-4 col-md-4">
+        <div class="thumbnail">
+            <img src="@noodle.urlimage" alt="">
+            <div class="caption">
+                <h3 class="pull-right">￥@noodle.price</h3>
+                <h3>
+                    <a asp-controller="Home"
+                       asp-action="detail"
+                       asp-route-id="@noodle.ID">@noodle.name</a>
+                </h3>
+                <p>@noodle.shortDescription</p>
+            </div>
+        </div>
+    </div>
+}
+<h2>评论</h2>
+<div class="list-group">
+    @foreach (var feedback in Model.Feedbacks)
+    {
+        <a class="list-group-item">
+            <div class="d-flex w-100 justify-content-between">
+                <h5 class="list-group-item-heading">@feedback.name</h5>
+                <small class="pull-right">@feedback.createdateutc</small>
+            </div>
+            <p class="list-group-item-text">@feedback.message</p>
+        </a>
+    }
+</div>
+
+<!--使用ViewModels进行数据的展示-->
+<!--4.5 注释掉5.4的引用  引入ViewModels -->

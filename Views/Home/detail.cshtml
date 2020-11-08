@@ -1,0 +1,17 @@
+﻿@model lanzhoubeefNoodefs.Models.Noodle
+
+<div>
+    <h1>@Model.name</h1>
+</div>
+
+<div class="thumbnail">
+    <img class="img-thumbnail" src="@Model.urlimage" alt="" />
+    <div class="caption-full">
+        <h3 class="pull-right">¥ @Model.price</h3>
+        <h3>
+            @Model.name
+        </h3>
+        <h4>@Model.shortDescription</h4>
+        <p>@Model.longDescription</p>
+    </div>
+</div>
